@@ -1,3 +1,8 @@
+<img src="./assets/FlyDB-logo.png" alt="FlyDB-logo" style="display: block; margin: 0 auto; width: 45%;" />
+
+>FlyDB's github address: https://github.com/ByteStorage/FlyDB
+> 
+
 # FlyDB-SDK-PythonFlyDB-SDK-Python
 
 FlyDB-SDK-Python是用于与FlyDB键值数据库交互的Python软件开发工具包（SDK）。

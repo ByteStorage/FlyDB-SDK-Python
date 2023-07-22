@@ -1,3 +1,10 @@
+<img src="./assets/FlyDB-logo.png" alt="FlyDB-logo" style="display: block; margin: 0 auto; width: 45%;" />
+
+>FlyDB's github address: https://github.com/ByteStorage/FlyDB
+> 
+
+English | [中文](https://github.com/ByteStorage/flydb/FlyDB-SDK-Python/master/README_CN.md)
+
 # FlyDB-SDK-Python
 
 FlyDB-SDK-Python is a software development toolkit (SDK) for interacting with the FlyDB key-value database in Python.
