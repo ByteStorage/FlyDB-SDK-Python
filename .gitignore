@@ -1,0 +1,5 @@
+.idea/
+example/data/
+.git/
+FlyDB_SDK_Python.egg-info/
+dist/
