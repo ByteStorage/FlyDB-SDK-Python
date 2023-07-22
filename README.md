@@ -27,14 +27,14 @@ Here's a simple example showing how to use FlyDB-SDK-Python to connect to the Fl
 
 ```python
 from pathlib import Path
-from database import db
+from FlyDB2 import db
 
-# Create a database client
+# Create a FlyDB2 client
 db_client = db.FlyDB()
 
-# Connect to the database
+# Connect to the FlyDB2
 path = Path.cwd().joinpath("data")
-db_client.connect_option(str(path), 256*1024*1024, True)
+db_client.connect_option(str(path), 256 * 1024 * 1024, True)
 
 # Set a key-value pair
 db_client.set("key", "value", 0)

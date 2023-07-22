@@ -1,6 +1,7 @@
 from typing import Union
 import grpc
-from database.client_grpc import db_pb2_grpc, db_pb2
+from FlyDB.client_grpc import db_pb2_grpc
+from FlyDB.client_grpc import db_pb2
 
 
 class FlyDB:
@@ -34,7 +35,7 @@ class FlyDB:
         Connects to the gRPC server with provided options.
 
         Parameters:
-            dir_path (str): The directory path for the database.
+            dir_path (str): The directory path for the FlyDB2.
             data_file_size (int): The size of data files.
             sync_write (bool): Indicates whether to use synchronous writes.
 
@@ -59,7 +60,7 @@ class FlyDB:
 
     def set(self, key: str, value: Union[str, int, float, bool, bytes], expire: int):
         """
-        Sets the key-value pair in the database.
+        Sets the key-value pair in the FlyDB2.
 
         Parameters:
             key (str): The key to be set.
@@ -95,7 +96,7 @@ class FlyDB:
 
     def get(self, key):
         """
-        Retrieves the value associated with the given key from the database.
+        Retrieves the value associated with the given key from the FlyDB2.
 
         Parameters:
             key (str): The key for which the value needs to be retrieved.
@@ -104,8 +105,8 @@ class FlyDB:
             Union[str, int, float, bool, bytes]: The value associated with the given key.
 
         Raises:
-            KeyError: If the key is not found in the database.
-            TimeoutError: If the key has expired in the database.
+            KeyError: If the key is not found in the FlyDB2.
+            TimeoutError: If the key has expired in the FlyDB2.
         """
         request = db_pb2.GetRequest()
         request.key = key
@@ -126,7 +127,7 @@ class FlyDB:
                 raise ValueError("Unsupported value type")
         except grpc._channel._InactiveRpcError as e:
             if "KeyNotFoundError" in str(e):
-                raise KeyError("key is not found in the database")
+                raise KeyError("key is not found in the FlyDB2")
             elif "Wrong value" in str(e):
                 raise TimeoutError("key expired")
             else:
@@ -134,7 +135,7 @@ class FlyDB:
 
     def delete(self, key):
         """
-        Deletes the key-value pair from the database.
+        Deletes the key-value pair from the FlyDB2.
 
         Parameters:
             key (str): The key to be deleted.
@@ -143,7 +144,7 @@ class FlyDB:
             None
 
         Raises:
-            KeyError: If the key is not found in the database.
+            KeyError: If the key is not found in the FlyDB2.
         """
         request = db_pb2.DelRequest()
         request.key = key
@@ -153,7 +154,7 @@ class FlyDB:
                 print("Delete data success!")
         except grpc._channel._InactiveRpcError as e:
             if "KeyNotFoundError" in str(e):
-                raise KeyError("key is not found in the database")
+                raise KeyError("key is not found in the FlyDB2")
             else:
                 raise
 

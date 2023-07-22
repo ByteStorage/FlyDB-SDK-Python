@@ -2,7 +2,7 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-import database.client_grpc.db_pb2 as lib_dot_proto_dot_gstring_dot_db__pb2
+import FlyDB.client_grpc.db_pb2 as lib_dot_proto_dot_gstring_dot_db__pb2
 
 class GStringServiceStub(object):
     """Missing associated documentation comment in .proto file."""

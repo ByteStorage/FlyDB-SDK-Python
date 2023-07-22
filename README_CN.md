@@ -16,7 +16,7 @@ FlyDB是一个高性能、轻量级的键值数据库，通过这个SDK，您可
 安装FlyDB-SDK-Python可以通过pip进行，运行以下命令：
 
 ```bash
-pip install FlyDB-SDK-Python
+pip install FlyDB2-SDK-Python
 ```
 
 ## 快速上手
@@ -25,14 +25,14 @@ pip install FlyDB-SDK-Python
 
 ```python
 from pathlib import Path
-from database import db
+from FlyDB import db
 
-# Create a database client
+# Create a FlyDB2 client
 db_client = db.FlyDB()
 
-# Connect to the database
+# Connect to the FlyDB2
 path = Path.cwd().joinpath("data")
-db_client.connect_option(str(path), 256*1024*1024, True)
+db_client.connect_option(str(path), 256 * 1024 * 1024, True)
 
 # Set a key-value pair
 db_client.set("key", "value", 0)

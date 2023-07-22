@@ -1,5 +1,7 @@
 .idea/
-example/data/
+FlyDB/example/data/
 .git/
-FlyDB_SDK_Python.egg-info/
+FlyDB.egg-info/
 dist/
+build/
+*__pycache__/
