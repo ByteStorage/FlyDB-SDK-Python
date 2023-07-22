@@ -18,7 +18,7 @@ To use FlyDB-SDK-Python, you first need to install the FlyDB server and ensure i
 You can install FlyDB-SDK-Python using pip, by running the following command:
 
 ```
-pip install FlyDB-SDK-Python
+pip install FlyDB==0.0.3
 ```
 
 ## Quick Start
@@ -27,7 +27,7 @@ Here's a simple example showing how to use FlyDB-SDK-Python to connect to the Fl
 
 ```python
 from pathlib import Path
-from FlyDB2 import db
+from FlyDB import db
 
 # Create a FlyDB2 client
 db_client = db.FlyDB()
