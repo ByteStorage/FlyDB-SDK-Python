@@ -2,7 +2,8 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-import FlyDB.client_grpc.db_pb2 as lib_dot_proto_dot_gstring_dot_db__pb2
+import FlyDB.client_grpc.gstring.db_pb2 as lib_dot_proto_dot_gstring_dot_db__pb2
+
 
 class GStringServiceStub(object):
     """Missing associated documentation comment in .proto file."""
@@ -11,7 +12,7 @@ class GStringServiceStub(object):
         """Constructor.
 
         Args:
-            channel: A client_grpc.Channel.
+            channel: A grpc.Channel.
         """
         self.NewFlyDBService = channel.unary_unary(
                 '/gstring.GStringService/NewFlyDBService',
@@ -97,6 +98,31 @@ class GStringServiceStub(object):
                 '/gstring.GStringService/MGet',
                 request_serializer=lib_dot_proto_dot_gstring_dot_db__pb2.MGetRequest.SerializeToString,
                 response_deserializer=lib_dot_proto_dot_gstring_dot_db__pb2.MGetResponse.FromString,
+                )
+        self.MSet = channel.unary_unary(
+                '/gstring.GStringService/MSet',
+                request_serializer=lib_dot_proto_dot_gstring_dot_db__pb2.MSetRequest.SerializeToString,
+                response_deserializer=lib_dot_proto_dot_gstring_dot_db__pb2.MSetResponse.FromString,
+                )
+        self.MSetNX = channel.unary_unary(
+                '/gstring.GStringService/MSetNX',
+                request_serializer=lib_dot_proto_dot_gstring_dot_db__pb2.MSetNXRequest.SerializeToString,
+                response_deserializer=lib_dot_proto_dot_gstring_dot_db__pb2.MSetNXResponse.FromString,
+                )
+        self.TTL = channel.unary_unary(
+                '/gstring.GStringService/TTL',
+                request_serializer=lib_dot_proto_dot_gstring_dot_db__pb2.TTLRequest.SerializeToString,
+                response_deserializer=lib_dot_proto_dot_gstring_dot_db__pb2.TTLResponse.FromString,
+                )
+        self.Keys = channel.unary_unary(
+                '/gstring.GStringService/Keys',
+                request_serializer=lib_dot_proto_dot_gstring_dot_db__pb2.KeysRequest.SerializeToString,
+                response_deserializer=lib_dot_proto_dot_gstring_dot_db__pb2.KeysResponse.FromString,
+                )
+        self.Size = channel.unary_unary(
+                '/gstring.GStringService/Size',
+                request_serializer=lib_dot_proto_dot_gstring_dot_db__pb2.SizeRequest.SerializeToString,
+                response_deserializer=lib_dot_proto_dot_gstring_dot_db__pb2.SizeResponse.FromString,
                 )
 
 
@@ -205,6 +231,36 @@ class GStringServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def MSet(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def MSetNX(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def TTL(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def Keys(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def Size(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_GStringServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -292,6 +348,31 @@ def add_GStringServiceServicer_to_server(servicer, server):
                     servicer.MGet,
                     request_deserializer=lib_dot_proto_dot_gstring_dot_db__pb2.MGetRequest.FromString,
                     response_serializer=lib_dot_proto_dot_gstring_dot_db__pb2.MGetResponse.SerializeToString,
+            ),
+            'MSet': grpc.unary_unary_rpc_method_handler(
+                    servicer.MSet,
+                    request_deserializer=lib_dot_proto_dot_gstring_dot_db__pb2.MSetRequest.FromString,
+                    response_serializer=lib_dot_proto_dot_gstring_dot_db__pb2.MSetResponse.SerializeToString,
+            ),
+            'MSetNX': grpc.unary_unary_rpc_method_handler(
+                    servicer.MSetNX,
+                    request_deserializer=lib_dot_proto_dot_gstring_dot_db__pb2.MSetNXRequest.FromString,
+                    response_serializer=lib_dot_proto_dot_gstring_dot_db__pb2.MSetNXResponse.SerializeToString,
+            ),
+            'TTL': grpc.unary_unary_rpc_method_handler(
+                    servicer.TTL,
+                    request_deserializer=lib_dot_proto_dot_gstring_dot_db__pb2.TTLRequest.FromString,
+                    response_serializer=lib_dot_proto_dot_gstring_dot_db__pb2.TTLResponse.SerializeToString,
+            ),
+            'Keys': grpc.unary_unary_rpc_method_handler(
+                    servicer.Keys,
+                    request_deserializer=lib_dot_proto_dot_gstring_dot_db__pb2.KeysRequest.FromString,
+                    response_serializer=lib_dot_proto_dot_gstring_dot_db__pb2.KeysResponse.SerializeToString,
+            ),
+            'Size': grpc.unary_unary_rpc_method_handler(
+                    servicer.Size,
+                    request_deserializer=lib_dot_proto_dot_gstring_dot_db__pb2.SizeRequest.FromString,
+                    response_serializer=lib_dot_proto_dot_gstring_dot_db__pb2.SizeResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -589,5 +670,90 @@ class GStringService(object):
         return grpc.experimental.unary_unary(request, target, '/gstring.GStringService/MGet',
             lib_dot_proto_dot_gstring_dot_db__pb2.MGetRequest.SerializeToString,
             lib_dot_proto_dot_gstring_dot_db__pb2.MGetResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def MSet(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/gstring.GStringService/MSet',
+            lib_dot_proto_dot_gstring_dot_db__pb2.MSetRequest.SerializeToString,
+            lib_dot_proto_dot_gstring_dot_db__pb2.MSetResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def MSetNX(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/gstring.GStringService/MSetNX',
+            lib_dot_proto_dot_gstring_dot_db__pb2.MSetNXRequest.SerializeToString,
+            lib_dot_proto_dot_gstring_dot_db__pb2.MSetNXResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def TTL(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/gstring.GStringService/TTL',
+            lib_dot_proto_dot_gstring_dot_db__pb2.TTLRequest.SerializeToString,
+            lib_dot_proto_dot_gstring_dot_db__pb2.TTLResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def Keys(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/gstring.GStringService/Keys',
+            lib_dot_proto_dot_gstring_dot_db__pb2.KeysRequest.SerializeToString,
+            lib_dot_proto_dot_gstring_dot_db__pb2.KeysResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def Size(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/gstring.GStringService/Size',
+            lib_dot_proto_dot_gstring_dot_db__pb2.SizeRequest.SerializeToString,
+            lib_dot_proto_dot_gstring_dot_db__pb2.SizeResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

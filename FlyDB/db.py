@@ -1,8 +1,6 @@
-from pprint import pprint
 from typing import Union
 import grpc
-from FlyDB.client_grpc import db_pb2_grpc
-from FlyDB.client_grpc import db_pb2
+from FlyDB.client_grpc.gstring import db_pb2, db_pb2_grpc
 
 
 class FlyDB:
@@ -320,3 +318,36 @@ class FlyDB:
                 raise KeyError("key is not found in the FlyDB")
             else:
                 raise
+
+    def append(self, key, value, expire):
+        """
+        Appends the given value to the string value associated with the given key.
+
+        Parameters:
+            key (str): The key for which the value needs to be appended.
+            value (str): The value to be appended.
+            expire (int): The expiration time for the key-value pair in milliseconds.
+                            When expire is 0, it never expires.
+
+        Returns:
+            int: The length of the string value associated with the given key after appending.
+
+        Raises:
+            TypeError: If the value associated with the given key is not of type string.
+        """
+        request = db_pb2.AppendRequest()
+        request.key = key
+        request.value = value
+        request.expire = expire * 1000000
+        try:
+            response = self.stub.Append(request)
+            if response.ok:
+                print("Append success!")
+            else:
+                raise ValueError("Append failed!")
+        except grpc._channel._InactiveRpcError as e:
+            if "Wrong value" in str(e):
+                raise TypeError("value is not of type string")
+            else:
+                raise
+
